@@ -1,0 +1,33 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+				<c:forEach items="${sucursales}" var="sucursales" varStatus="status">
+				<tr>
+					<td class="text-center">${sucursales.nombreSucursal}</td>
+					<td class="text-center">
+						<form name="verPerfil" action="${pageContext.request.contextPath}/empleado/main" method="post">
+            				<input type="hidden" name="id" value=${sucursales.idSucursal}>
+            				<input class="btn btn-primary" type="Submit" value="Ver Perfil">
+						</form>
+					</td>
+					<td class="text-center">
+						<form name="editarSucursal" action="${pageContext.request.contextPath}/sucursal/ver" method="post">
+            				<input type="hidden" name="editId" value=${sucursales.idSucursal}>
+            				<input class="btn btn-secondary" type="Submit" value="Editar">
+						</form>
+					</td>
+					<td class="text-center">
+						<form action="${pageContext.request.contextPath}/sucursal/eliminar" method="post"> 
+            				<input type="hidden" name="valorId" value=${sucursales.idSucursal}>
+            				<input class="btn btn-danger" type="submit" class="delete_button" value="Eliminar">
+						</form>
+					</td>
+				</tr>
+				</c:forEach>
+				
+										<form id="estado" action="${pageContext.request.contextPath}/admin/user/status" method="post"> 
+            				<input type="hidden" name="userId" value=${usuarios.id_usuario}>
+            				<input class="btn btn-danger" type="submit" class="delete_button" value="Activar/Inactivar">
+						</form>
